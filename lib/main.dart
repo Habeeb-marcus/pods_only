@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pods_only/ui/home.dart';
+import 'package:pods_only/ui/screens/home.dart';
 
 void main() {
   runApp(const MyApp());

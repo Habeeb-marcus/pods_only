@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:podcast_search/podcast_search.dart';
 import 'package:pods_only/core/services/podcast_service.dart';
-import 'package:pods_only/ui/home_category.dart';
+import 'package:pods_only/ui/components/home_category.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
