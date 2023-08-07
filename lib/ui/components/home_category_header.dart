@@ -6,7 +6,7 @@ class HomeCategoryHeader extends StatelessWidget {
   final mainTitle;
   final String subTitle;
   final VoidCallback buttonFunction;
-  const HomeCategoryHeader({super.key, this.mainTitle, required this.subTitle, required this.buttonFunction});
+  const HomeCategoryHeader({super.key, this.mainTitle,  this.subTitle = '', required this.buttonFunction});
 
   @override
   Widget build(BuildContext context) {

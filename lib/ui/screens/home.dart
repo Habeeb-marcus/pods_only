@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:podcast_search/podcast_search.dart';
 import 'package:pods_only/core/services/podcast_service.dart';
 import 'package:pods_only/ui/components/home_category.dart';
+import 'package:pods_only/ui/components/home_category_header.dart';
+import 'package:pods_only/ui/components/play_sect.dart';
+import 'package:pods_only/ui/screens/temp_api_ui.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -70,7 +73,9 @@ class Home extends StatelessWidget {
               ),
             HomeCategory(
               mainTitle: 'Popular show', 
-              buttonFunction: (){}, 
+              buttonFunction: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const TempAPIUI()));
+              }, 
               imageHeight: 180, 
               imageWidth: 150, 
               containerHeight: 220, 
@@ -78,6 +83,20 @@ class Home extends StatelessWidget {
               isHorizontalLine: true,
               genre: 'Politics',
               ),
+
+              const SizedBox(
+                height: 10,
+              ),
+              HomeCategoryHeader(buttonFunction: (){}, mainTitle: 'Business',),
+               const SizedBox(
+              height: 10,
+            ),
+            PlaySect(),
+            const SizedBox(
+              height: 10,
+            ),
+            
+          
                   ],
                 ),
           )),

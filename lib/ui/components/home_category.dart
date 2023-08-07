@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:podcast_search/podcast_search.dart';
 import 'package:pods_only/core/services/podcast_service.dart';
 
+import '../screens/temp_api_ui.dart';
+
 class HomeCategory extends StatelessWidget {
   final String mainTitle;
   final String subTitle;
@@ -60,6 +62,7 @@ class HomeCategory extends StatelessWidget {
                 ],
               ),
               InkWell(
+    
                 child: const Text(
                   'See All',
                   style: TextStyle(
@@ -68,7 +71,10 @@ class HomeCategory extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 ),
                 onTap: () {
-                  buttonFunction;
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TempAPIUI()));
                 },
               ),
             ],
