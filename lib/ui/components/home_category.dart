@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 import 'package:podcast_search/podcast_search.dart';
 import 'package:pods_only/core/services/podcast_service.dart';
+import 'package:pods_only/ui/screens/detail_page.dart';
 
 import '../screens/temp_api_ui.dart';
 
@@ -97,70 +98,79 @@ class HomeCategory extends StatelessWidget {
                     itemCount: snapshot.data?.resultCount ?? 0,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final items = snapshot.data?.items;
-                      final item = items?[index];
+                      final  items = snapshot.data?.items;
+                      final item= items?[index];
 
-                      return Container(
-                        height: imageHeight,
-                        // 180,
-                        width: imageWidth,
-                        // 150,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                '${item?.artworkUrl600}',
-                                fit: BoxFit.cover,
+                      return GestureDetector(
+                        onTap: () {
+                          if(item == null)return;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  DetailPage(item: item,)));
+                        },
+                        child: Container(
+                          height: imageHeight,
+                          // 180,
+                          width: imageWidth,
+                          // 150,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  '${item?.artworkUrl600}',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              index == 0
-                                  ? '...RECENTLY FOLLOWED'
-                                  : 'RECENTLY FOLLOWED',
-                              style: TextStyle(
-                                  color:
-                                      const Color.fromARGB(255, 165, 161, 161),
-                                  fontSize: (isHorizontalLine == false) ? 9 : 0,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.6),
-                            ),
-                            SizedBox(
-                              height: (isHorizontalLine == false) ? 3 : 0,
-                            ),
-                            Text(
-                              (isHorizontalLine == false)
-                                  ? '${item?.trackName}'
-                                  : '${item?.primaryGenreName}',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                              (isHorizontalLine == false)
-                                  ? ('${item?.artistName} - ${item?.collectionCensoredName}')
-                                  : '${item?.artistName}',
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  color: Colors.deepPurple,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            )
-                          ],
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                index == 0
+                                    ? '...RECENTLY FOLLOWED'
+                                    : 'RECENTLY FOLLOWED',
+                                style: TextStyle(
+                                    color:
+                                        const Color.fromARGB(255, 165, 161, 161),
+                                    fontSize: (isHorizontalLine == false) ? 9 : 0,
+                                    fontWeight: FontWeight.w600,
+                                    letterSpacing: 0.6),
+                              ),
+                              SizedBox(
+                                height: (isHorizontalLine == false) ? 3 : 0,
+                              ),
+                              Text(
+                                (isHorizontalLine == false)
+                                    ? '${item?.trackName}'
+                                    : '${item?.primaryGenreName}',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              const SizedBox(
+                                height: 3,
+                              ),
+                              Text(
+                                (isHorizontalLine == false)
+                                    ? ('${item?.artistName} - ${item?.collectionCensoredName}')
+                                    : '${item?.artistName}',
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    color: Colors.deepPurple,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },

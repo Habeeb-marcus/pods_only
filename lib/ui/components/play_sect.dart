@@ -19,12 +19,15 @@ class PlaySect extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      height: 380,
+                      // height: 380,
                       // color: Colors.amber,
                       child: ListView.builder(
-                        itemCount: 3,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: snapshot.data?.items.length,
                         shrinkWrap: true,
                         itemBuilder:  (BuildContext context, int index) {
+                          print('${snapshot.data?.items}---->>>>>>>>>>>>>>>>>>>');
+                          print('-------${snapshot.data}---->>>>>>>>>>>>>>>>>>>');
                           final items = snapshot.data?.items.reversed.toList();
                            final item = items?[index];
                           
