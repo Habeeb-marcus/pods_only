@@ -29,8 +29,8 @@ class HomeCategory extends StatelessWidget {
     required this.imageWidth,
     required this.containerHeight,
     required this.containerColor,
-    this.isHorizontalLine = false, 
-     this.genre = '', 
+    this.isHorizontalLine = false,
+    this.genre = '',
   });
 
   @override
@@ -63,7 +63,6 @@ class HomeCategory extends StatelessWidget {
                 ],
               ),
               InkWell(
-    
                 child: const Text(
                   'See All',
                   style: TextStyle(
@@ -85,7 +84,7 @@ class HomeCategory extends StatelessWidget {
           height: 10,
         ),
         FutureBuilder<SearchResult>(
-            future: PodcastService().fetchPodcast(genre: genre ),
+            future: PodcastService().fetchPodcast(genre: genre),
             builder:
                 (BuildContext context, AsyncSnapshot<SearchResult> snapshot) {
               if (snapshot.hasData) {
@@ -98,16 +97,20 @@ class HomeCategory extends StatelessWidget {
                     itemCount: snapshot.data?.resultCount ?? 0,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      final  items = snapshot.data?.items;
-                      final item= items?[index];
+                      final items = snapshot.data?.items;
+                      final item = items?[index];
 
                       return GestureDetector(
                         onTap: () {
-                          if(item == null)return;
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  DetailPage(item: item,)));
+                          if (item == null) return;
+                         Navigator.pushNamed(context, 'DetailPage',arguments: item);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => DetailPage(
+                          //               item: item,
+                          //             )));
+                          // Navigator.pushNamed(context, 'DetailPage')
                         },
                         child: Container(
                           height: imageHeight,
@@ -133,9 +136,10 @@ class HomeCategory extends StatelessWidget {
                                     ? '...RECENTLY FOLLOWED'
                                     : 'RECENTLY FOLLOWED',
                                 style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 165, 161, 161),
-                                    fontSize: (isHorizontalLine == false) ? 9 : 0,
+                                    color: const Color.fromARGB(
+                                        255, 165, 161, 161),
+                                    fontSize:
+                                        (isHorizontalLine == false) ? 9 : 0,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.6),
                               ),
@@ -184,7 +188,7 @@ class HomeCategory extends StatelessWidget {
               }
               if (snapshot.hasError) {
                 return const Center(
-                    child:  Text('Opps!!! something went wrong'));
+                    child: Text('Opps!!! something went wrong'));
               }
               return const Center(child: CircularProgressIndicator());
             }),

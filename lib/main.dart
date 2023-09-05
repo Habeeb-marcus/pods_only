@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pods_only/ui/screens/home.dart';
+import 'package:pods_only/utils/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //     String? name = stdin.readLineSync();
     // print(name);
-    return const MaterialApp(
+    return  MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: Home()
+      home: Home(),
+      onGenerateRoute: RouteHelper().generateRoute,
    
     );
   }
