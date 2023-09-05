@@ -111,12 +111,25 @@ class _DetailPageState extends State<DetailPage> {
                 height: 10,
               ),
               SizedBox(
-                // height: 10,
+                height: 0.05  * height,
                 width: 2/3 * width,
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.play_arrow_sharp),
                   label: const Text('Latest Episode'),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.white),
+                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                          elevation: MaterialStateProperty.all(0),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: const BorderSide(color: Colors.white)
+                            ),
+                          )
+                  )
+                          
                 ),
               ),
               const SizedBox(
